@@ -1,0 +1,35 @@
+commit 84b521548e49705dfbc3906620e08cdbf23e6e31
+Author: Hasana Zahid <hasanazahid842@gmail.com>
+Date:   Mon Mar 23 14:05:03 2026 +0500
+
+    Update .gitignore to ignore datasets, models, and checkpoints
+
+ .gitignore | 8 ++++++++
+ 1 file changed, 8 insertions(+)
+
+commit 73e5f8a69c64909e8d8b350127b53fbbb6f8f563
+Author: Hasana Zahid <hasanazahid842@gmail.com>
+Date:   Mon Mar 23 13:57:50 2026 +0500
+
+    Add .gitignore to exclude notebook checkpoints
+
+ .gitignore | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit 681c69f29729fb25631c5cd4c3916af9dc56c8f4
+Author: Hasana Zahid <hasanazahid842@gmail.com>
+Date:   Sun Mar 15 15:47:40 2026 +0500
+
+    Add project-01 house price prediction
+
+ project-01-house-price-prediction | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit fa92ada4ad7205841535e48ebb04b57f532b4511
+Author: Hasana Zahid <hasanazahid842@gmail.com>
+Date:   Sun Mar 15 15:40:54 2026 +0500
+
+    Initial commit
+
+ README.md | 2 ++
+ 1 file changed, 2 insertions(+)

@@ -1,0 +1,9 @@
+.ipynb_checkpoints/ 
+# Ignore data files
+*.csv
+*.xlsx
+*.zip
+data/
+models/
+__pycache__/
+.ipynb_checkpoints/
