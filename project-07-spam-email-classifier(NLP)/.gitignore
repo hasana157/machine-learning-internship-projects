@@ -1,0 +1,22 @@
+.ipynb_checkpoints/ 
+# Ignore data files
+*.csv
+*.xlsx
+*.zip
+data/
+models/
+__pycache__/
+.ipynb_checkpoints/
+# Ignore Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/
+
+# Ignore all data files (csv, xlsx, zip, etc.)
+*.csv
+*.xlsx
+*.zip
+*.json
+data/
+
+# Optional: ignore the log file you have
+git_log.txt
