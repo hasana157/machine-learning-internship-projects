@@ -50,7 +50,7 @@ spam_email_classifier/
 │
 ├── src/
 │   ├── app.py                 # Original Streamlit app
-│   ├── advanced_app_v2.py     # Professional dark-themed Streamlit app
+│   ├    
 │   ├── preprocess.py          # Text cleaning / feature functions
 │   ├── predict.py             # Prediction logic / top word contribution
 │   └── train_model.py         # Model training + hyperparameter tuning
