@@ -80,14 +80,16 @@ The dataset contains **5,572 SMS messages**, labeled as **Ham (legitimate)** or 
 * Ham messages: Mostly short (0–50 characters).
 * Spam messages: Cluster around 130–160 characters.
 
-![Message Length Distribution](reports/length_distribution.png)
+<img width="640" height="480" alt="length_distribution" src="https://github.com/user-attachments/assets/c4d7f7f6-26dd-4c72-a6fa-966da4d85293" />
+
 
 ### **3.2 Word Analysis**
 
 * **Spam Vocabulary:** `free`, `claim`, `prize`, `cash`, `won`
 * **Ham Vocabulary:** `u`, `ok`, `love`, `time`, `day`
 
-![Class Distribution](reports/class_distribution.png)
+<img width="640" height="480" alt="class_distribution" src="https://github.com/user-attachments/assets/ebca59e7-02d2-4e8b-9761-8844cbe7de7f" />
+
 
 **Insight:** Message length and word choice are strong differentiators for Spam vs. Ham.
 
@@ -119,7 +121,8 @@ The model balances detection of Spam while minimizing false positives on Ham.
 
 ### **6.1 Confusion Matrix**
 
-![Confusion Matrix](reports/confusion_matrix.png)
+<img width="900" height="600" alt="confusion_matrix" src="https://github.com/user-attachments/assets/65fbe906-4e79-469a-849e-72ab1d9db6f6" />
+
 
 * **True Negatives:** 954
 * **True Positives:** 135
@@ -149,10 +152,12 @@ The model balances detection of Spam while minimizing false positives on Ham.
 ### **7.2 Screenshots**
 
 **Main UI:**
-![App Screenshot](reports/app.jpg)
+![app](https://github.com/user-attachments/assets/ae3f3929-ee78-4a59-95a6-0e138f0a0997)
+
 
 **Batch Upload:**
-![Batch Upload Placeholder](reports/batch_ui.png)
+
+<img width="1140" height="780" alt="batch_ui" src="https://github.com/user-attachments/assets/b4ed8a47-1bc9-4bc6-8195-ec0d7ca18743" />
 
 ---
 
