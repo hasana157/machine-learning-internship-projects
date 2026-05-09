@@ -127,7 +127,7 @@ else:
         st.code("python src/train.py --data_dir data --epochs 30")
         st.stop()
     else:
-        st.success("Pipeline ready", icon="v")
+        st.success("Pipeline ready", icon="✅")
 
 tab_upload, tab_webcam, tab_results, tab_about = st.tabs(
     ["Upload Image","Webcam","Saved Results","How It Works"])
