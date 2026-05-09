@@ -1,0 +1,47 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Data — re-download don't commit
+data/raw/
+data/processed/
+data/external/
+
+# Models (large binaries — use Git LFS or DVC for these)
+models/*.joblib
+models/*.pkl
+
+# Keep small JSON metadata
+!models/metrics.json
+!models/model_meta.json
+
+# Notebooks checkpoints
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# Streamlit secrets
+.streamlit/secrets.toml
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Logs
+*.log

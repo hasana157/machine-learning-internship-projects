@@ -1,0 +1,47 @@
+project:
+  name: "NewsLens"
+  version: "1.0.0"
+  random_seed: 42
+
+data:
+  raw_train_path: "data/raw/ag_train.csv"
+  raw_test_path: "data/raw/ag_test.csv"
+  processed_train: "data/processed/train_clean.csv"
+  processed_test: "data/processed/test_clean.csv"
+  val_size: 0.15
+  label_map:
+    1: "World"
+    2: "Sports"
+    3: "Business"
+    4: "Sci/Tech"
+
+tfidf:
+  max_features: 150000
+  ngram_range: [1, 3]
+  sublinear_tf: true
+  min_df: 2
+  max_df: 0.95
+  analyzer: "word"
+  strip_accents: "unicode"
+
+logistic_regression:
+  C: 5.0
+  solver: "saga"
+  max_iter: 1000
+  class_weight: "balanced"
+
+linear_svm:
+  C: 1.0
+  max_iter: 2000
+  loss: "squared_hinge"
+  class_weight: "balanced"
+
+evaluation:
+  metrics_output: "models/metrics.json"
+  confusion_matrix_fig: "reports/figures/confusion_matrix.png"
+  feature_importance_fig: "reports/figures/feature_importance.png"
+  error_analysis_output: "reports/error_analysis.json"
+
+model:
+  output_path: "models/best_model.joblib"
+  svm_output_path: "models/svm_model.joblib"
