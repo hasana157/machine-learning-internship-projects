@@ -1,0 +1,32 @@
+data:
+  n_points: 2000
+  frequency: "15min"
+  start_date: "2024-01-01"
+  anomaly_rate: 0.03
+  sensors:
+    temperature: { mu: 72, sigma: 2, drift_amplitude: 4 }
+    vibration:   { mu: 3.5, sigma: 0.8 }
+    pressure:    { mu: 100, sigma: 3 }
+    current:     { mu: 15, sigma: 1.5 }
+
+features:
+  rolling_window: 10
+  lag_steps: [1, 3, 6]
+
+model:
+  n_estimators: 200
+  contamination: 0.03
+  zscore_threshold: 3.0
+  random_state: 42
+
+evaluation:
+  train_split: 0.80
+  score_normalize: true
+
+paths:
+  data: data/sensor_data.csv
+  model: models/anomaly_detector.joblib
+  scaler: models/scaler.joblib
+  feature_names: models/feature_names.json
+  reports: reports/
+  figures: reports/figures/
