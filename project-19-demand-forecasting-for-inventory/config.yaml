@@ -1,0 +1,37 @@
+# ForecastIQ Configuration
+# Production-grade demand forecasting system for Rossmann Store Sales
+
+data:
+  kaggle_train: data/train.csv
+  kaggle_store: data/store.csv
+  synthetic_stores: 20
+  start_date: "2021-01-01"
+  end_date: "2023-07-31"
+
+features:
+  lag_steps: [1, 7, 14, 28, 365]
+  rolling_windows: [7, 14, 28]
+  ewm_spans: [7, 28]
+  days_to_christmas_cap: 90
+  days_to_easter_cap: 60
+
+model:
+  n_estimators: 50
+  max_depth: 20
+  min_samples_leaf: 2
+  random_state: 42
+
+forecaster:
+  horizon_days: 30
+  confidence_interval: 0.12
+
+evaluation:
+  train_split_ratio: 0.85
+  top_errors_n: 15
+  mape_zero_cap: true
+
+paths:
+  model: models/demand_forecaster.joblib
+  metadata: models/model_metadata.json
+  reports: reports/
+  figures: reports/figures/
