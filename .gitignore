@@ -20,3 +20,4 @@ data/
 
 # Optional: ignore the log file you have
 git_log.txt
+project-21-movie-recommender-collaborative-filtering/data/
