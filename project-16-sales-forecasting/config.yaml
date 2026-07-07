@@ -1,0 +1,39 @@
+# ============================================================
+# Project 16 — Sales Forecasting — Central Configuration
+# Every script reads from this file. Change values here,
+# not inside the source code, to keep experiments reproducible.
+# ============================================================
+
+data:
+  n_days: 730                 # ~2 years of daily history
+  start_date: "2023-01-01"
+  base_level: 200              # average daily sales at day 0
+  trend_per_day: 0.35          # linear growth per day
+  weekly_amplitude: 20         # weekend/weekday seasonality strength
+  yearly_amplitude: 40         # yearly (annual) seasonality strength
+  noise_std: 10                # random Gaussian noise
+  promo_rate: 0.08             # probability a given day is a promo day
+  promo_boost: 30              # extra sales on promo days
+  holiday_boost: 60            # extra sales on holidays
+
+features:
+  lags: [1, 7, 14, 28]         # lag features (in days)
+  windows: [7, 14, 30]         # rolling mean/std window sizes
+
+model:
+  linear:
+    fit_intercept: true
+  random_forest:
+    n_estimators: 400
+    max_depth: 12
+    min_samples_leaf: 2
+    random_state: 42
+
+evaluation:
+  train_split: 0.80            # chronological train/test split (no shuffling)
+
+paths:
+  data: data/sales_data.csv
+  models_dir: models/
+  reports_dir: reports/
+  figures_dir: reports/figures/
