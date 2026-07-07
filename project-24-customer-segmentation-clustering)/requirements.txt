@@ -1,0 +1,23 @@
+# Core data / ML
+pandas>=2.1
+numpy>=1.26
+scikit-learn>=1.4
+scipy>=1.11
+
+# Dashboard
+streamlit>=1.32,<2.0
+plotly>=5.19,<6.0
+
+# Templating (persona narratives)
+Jinja2>=3.1,<4.0
+
+# Optional real-time scoring API
+fastapi>=0.110,<1.0
+uvicorn>=0.29,<1.0
+pydantic>=2.6,<3.0
+
+# Parquet I/O (optional; falls back to CSV automatically if not installed)
+pyarrow>=15.0
+
+# Testing
+pytest>=8.0
