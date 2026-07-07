@@ -1,0 +1,75 @@
+# ============================================================================
+# CineMatch AI - ML Module Dependencies
+# ============================================================================
+
+# Core ML & Data
+numpy==1.26.4
+scipy==1.14.1
+pandas==2.2.2
+scikit-learn==1.5.1
+scikit-surprise==0.1
+
+# Recommendation Systems
+implicit==0.7.0
+faiss-cpu==1.8.0
+optuna==3.6.1
+
+# Deep Learning (Optional for future)
+torch==2.0.0
+lightning==2.0.0
+
+# Data Processing
+polars==1.0.0
+pyarrow==17.0.0
+great-expectations==0.18.18
+
+# ML Tracking & Experiment Management
+mlflow==2.17.1
+wandb==0.16.0
+
+# Interactive Demos
+gradio==4.31.0
+jupyter==1.0.0
+ipython==8.19.0
+
+# Database & Caching
+sqlalchemy==2.0.36
+asyncpg==0.30.0
+redis==5.1.0
+aioredis==2.0.1
+
+# API Integration
+fastapi==0.111.0
+httpx==0.27.2
+requests==2.31.0
+
+# Utilities
+python-dotenv==1.0.1
+pydantic==2.8.2
+pydantic-settings==2.3.2
+
+# Serialization & Persistence
+joblib==1.4.2
+pickle5==0.0.12
+dill==0.3.7
+
+# Monitoring & Logging
+structlog==24.4.0
+python-json-logger==2.0.7
+prometheus-client==0.21.0
+
+# Testing
+pytest==7.4.4
+pytest-asyncio==0.23.3
+pytest-cov==4.1.0
+faker==24.4.0
+
+# Code Quality
+black==24.3.0
+ruff==0.4.10
+mypy==1.11.1
+
+# Visualization (Optional)
+matplotlib==3.8.0
+plotly==5.18.0
+seaborn==0.13.0

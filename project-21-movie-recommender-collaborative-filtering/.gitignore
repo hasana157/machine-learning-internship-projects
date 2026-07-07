@@ -1,0 +1,164 @@
+# Environment Variables
+.env
+.env.local
+.env.*.local
+.env.production.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+*.sublime-project
+*.sublime-workspace
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+pip-log.txt
+pip-delete-this-directory.txt
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+*.cover
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Node/Next.js
+node_modules/
+npm-debug.log
+yarn-error.log
+.next/
+out/
+dist/
+build/
+.vercel/
+.pnp
+.pnp.js
+
+# Frontend
+.cache/
+*.pem
+coverage/
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+pgdata/
+postgres_data/
+redis_data/
+
+# ML Models
+*.pkl
+*.h5
+*.pt
+*.pth
+models/*/
+*.joblib
+ml_data/large_files/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+pip-log.txt
+
+# OS
+.DS_Store
+Thumbs.db
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.nyc_output
+coverage
+
+# Docker
+docker-compose.override.yml
+.dockerignore
+
+# AWS
+.aws/
+*.pem
+*.key
+
+# Secrets
+secrets/
+.secrets/
+private_key*
+public_key*
+
+# Temporary Files
+tmp/
+temp/
+*.tmp
+*.bak
+*.swp
+
+# Project specific
+/ml/data/movielens*/
+/ml/models/production/
+/backend/logs/
+/frontend/.next/
+/frontend/out/
+*.sql.dump
+
+# Keep but ignore large files
+!.gitkeep
+ml/data/.gitkeep
+backend/logs/.gitkeep
+frontend/.next/.gitkeep
+
+# CI/CD
+.github/workflows/*.local.yml
+
+# Misc
+.gradle
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Desktop.ini
