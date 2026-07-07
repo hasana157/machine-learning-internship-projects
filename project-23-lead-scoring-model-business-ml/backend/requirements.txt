@@ -1,0 +1,48 @@
+# Litestar API Framework
+litestar==2.7.1
+uvicorn==0.27.0
+python-multipart==0.0.6
+
+# Database
+sqlalchemy==2.0.23
+asyncpg==0.29.0
+psycopg2-binary==2.9.9
+alembic==1.13.0
+
+# ML/Data Science
+xgboost==2.0.3
+scikit-learn==1.3.2
+pandas==2.1.4
+numpy==1.24.3
+scipy==1.11.4
+shap==0.43.0
+
+# Feature Engineering & Preprocessing
+category-encoders==2.6.2
+
+# Configuration & Serialization
+pydantic==2.5.2
+pydantic-settings==2.1.0
+python-dotenv==1.0.0
+
+# Caching & Queuing
+redis==5.0.1
+rq==1.16.1
+
+# Monitoring & Logging
+python-json-logger==2.0.7
+
+# Testing
+pytest==7.4.3
+pytest-asyncio==0.21.1
+pytest-cov==4.1.0
+httpx==0.25.2
+
+# Development
+black==23.12.1
+flake8==6.1.0
+isort==5.13.2
+mypy==1.7.1
+
+# Utilities
+tenacity==8.2.3
