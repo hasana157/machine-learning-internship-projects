@@ -1,0 +1,34 @@
+data:
+  n_days: 730
+  start_date: "2022-01-01"
+  base_load: 500
+  trend_amplitude: 50      # total kWh drift added over full range
+  weekly_amplitude: 40     # weekday vs weekend swing
+  yearly_amplitude: 60     # summer/winter swing
+  noise_sigma: 20
+  random_state: 42
+
+features:
+  lag_steps: [1, 7, 14]
+  rolling_windows: [7, 14]
+
+model:
+  train_split: 0.80
+  random_state: 42
+  candidates:
+    linear_regression: {}
+    random_forest:
+      n_estimators: 300
+      max_depth: 12
+    gradient_boosting:
+      n_estimators: 300
+      learning_rate: 0.05
+      max_depth: 3
+
+paths:
+  data: data/energy_consumption.csv
+  models_dir: models/
+  best_model: models/best_model.joblib
+  metadata: models/model_metadata.json
+  reports: reports/
+  figures: reports/figures/

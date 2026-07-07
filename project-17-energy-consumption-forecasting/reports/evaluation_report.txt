@@ -1,0 +1,24 @@
+============================================================
+ENERGY CONSUMPTION FORECASTING — EVALUATION REPORT
+============================================================
+
+Best model: gradient_boosting
+
+Model comparison (test set):
+  linear_regression    MAE=19.89  RMSE=24.80  MAPE=4.00%
+  random_forest        MAE=20.67  RMSE=25.59  MAPE=4.17%
+  gradient_boosting    MAE=19.81  RMSE=24.68  MAPE=3.98% <- selected
+
+Forecast error by weekday (best model):
+  Monday     MAE=17.98
+  Tuesday    MAE=20.51
+  Wednesday  MAE=24.38
+  Thursday   MAE=18.18
+  Friday     MAE=16.74
+  Saturday   MAE=21.38
+  Sunday     MAE=19.65
+
+Key insight: highest error occurs on Wednesday, suggesting the
+model under-captures day-specific behavioural shifts (e.g. weekend
+occupancy or routine changes). Consider day-specific calendar
+features or a separate weekday/weekend model if this gap matters.
