@@ -72,56 +72,60 @@ applicant. CreditLens is built around all three.
 
 ---
 
-## 📊 Results (bundled synthetic dataset, 1,200-row held-out test set)
+## 📊 Results (current trained run on the provided loan dataset)
 
 | Model | ROC-AUC | PR-AUC | F1 | Brier Score |
-|---|---|---|---|---|
-| **Logistic Regression (selected)** | **0.768** | **0.925** | 0.791 | 0.199 |
-| Random Forest | 0.755 | 0.920 | 0.796 | — |
-| XGBoost | 0.758 | 0.920 | **0.904** | — |
+|---|---:|---:|---:|---:|
+| **Logistic Regression (selected)** | **0.6074** | **0.7694** | **0.6358** | **0.2373** |
+| Random Forest | 0.5774 | 0.7201 | 0.7753 | 0.2201 |
+| XGBoost | 0.5814 | 0.7308 | 0.8300 | 0.2055 |
 
 > Model selection is driven by cross-validated ROC-AUC (see `config.yaml → training.scoring`).
-> Swap it to `f1` or `average_precision` if your business priority differs — no code changes needed.
-> Results regenerate every time you run `make train`; numbers here are from the bundled synthetic dataset.
+> The current training run used a prepared loan-applications CSV derived from the provided train/test files and produced the artifacts saved under `artifacts/` and `reports/figures/`.
 
 **Top global risk drivers (SHAP):** debt-to-income ratio and the engineered
-credit-utilization-risk feature dominate, followed by credit score and
-previous defaults — consistent with real underwriting practice.
+credit-utilization-risk feature are strong contributors, followed by credit
+score and previous defaults — consistent with standard underwriting signals.
 
 ---
 
 ## 🚀 Quick Start
 
 ```bash
-# 1. Clone the repository
-git clone https://github.com/hasana157/CreditLens && cd CreditLens
+# 1. Clone the repository and enter the project folder
+git clone https://github.com/hasana157/machine-learning-internship-projects.git
+cd machine-learning-internship-projects/project-25-capstone-LoanApprovalRiskPrediction
 
-# 2. Install dependencies
-make setup
+# 2. Create and activate a virtual environment
+python -m venv .venv
+source .venv/bin/activate      # Windows: .venv\Scripts\activate
 
-# 3. Train all 3 models with hyperparameter tuning (reproducible, config-driven)
-make train
+# 3. Install dependencies
+pip install -r requirements.txt
 
-# 4. Re-check model health any time without retraining
-make evaluate
+# 4. Train all 3 models with hyperparameter tuning (reproducible, config-driven)
+python train.py --config config.yaml
 
-# 5. Score a single applicant with a full explanation
-make predict
+# 5. Re-check model health any time without retraining
+python evaluate.py --config config.yaml
+
+# 6. Score a single applicant with a full explanation
+python predict.py --input sample_applicant.json
 ```
 
-`make train` takes a few minutes (hyperparameter search across 3 models).
+Training takes a few minutes because each model is tuned with randomized search.
 Every step is logged to the console and to MLflow.
 
 ---
 
 ## 🗄️ Dataset
 
-### Default: synthetic data (works out of the box)
-`train.py` auto-generates `data/loan_applications.csv` on first run if it
-doesn't exist — 6,000 realistic synthetic applicants with income, credit
-score, employment history, defaults, and a target built from a genuine
-risk formula (not random labels), including a small amount of injected
-missingness so the imputers actually get exercised.
+### Current setup
+The project can run with either a prepared CSV at `data/loan_applications.csv`
+or with synthetic data generated automatically on first run. In this repo
+snapshot, the provided train/test CSV files were converted into a single
+`data/loan_applications.csv` file for training, and the dataset itself is not
+committed to Git.
 
 ### Using a real dataset
 CreditLens works with any loan-applicant CSV that has these columns
