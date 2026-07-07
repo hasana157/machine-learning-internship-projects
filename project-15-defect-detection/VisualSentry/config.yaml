@@ -1,0 +1,50 @@
+model:
+  img_size: [128, 128]
+  channels: 3
+  latent_dim: 64
+  encoder_filters: [32, 64, 128]
+  decoder_filters: [128, 64, 32]
+  activation: "relu"
+  output_activation: "sigmoid"
+
+training:
+  epochs: 20
+  batch_size: 32
+  learning_rate: 0.001
+  validation_split: 0.2
+  early_stopping_patience: 5
+  lr_reduce_patience: 3
+  lr_reduce_factor: 0.5
+  min_lr: 0.00001
+  shuffle: true
+  seed: 42
+
+evaluation:
+  threshold_multiplier: 2.0
+  anomaly_heatmap_alpha: 0.5
+  heatmap_colormap: "hot"
+  metrics: ["precision", "recall", "f1", "auc_roc"]
+
+data:
+  augmentation:
+    horizontal_flip: true
+    brightness_delta: 0.1
+    contrast_lower: 0.9
+    contrast_upper: 1.1
+  demo:
+    num_normal: 200
+    num_defect: 50
+    img_size: [128, 128]
+    noise_std: 0.05
+    defect_patch_size: [20, 30]
+
+paths:
+  normal_data: data/normal
+  defect_data: data/defect
+
+  reports: reports
+  figures: reports/figures
+
+  model_save: models/autoencoder_defect.keras
+  training_log: reports/training_log.csv
+  loss_curve: reports/figures/loss_curve.png
