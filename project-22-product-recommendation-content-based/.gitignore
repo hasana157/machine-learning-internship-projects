@@ -1,0 +1,53 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+build/
+dist/
+*.egg-info/
+
+# Jupyter
+.ipynb_checkpoints
+*.ipynb_checkpoints
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# ML Artefacts (regenerate)
+ml/artefacts/*.pkl
+ml/artefacts/*.npz
+ml/artefacts/*.npy
+!ml/artefacts/.gitkeep
+
+# Data (regenerate)
+data/*.jsonl
+data/*.csv
+!data/sample/
+!data/.gitkeep
+
+# Logs
+*.log
+logs/
+
+# Environment
+.env
+.env.local
+
+# OS
+.DS_Store
+
+# Temporary
+*.bak
+*.tmp

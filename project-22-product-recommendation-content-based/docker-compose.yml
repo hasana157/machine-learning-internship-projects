@@ -1,0 +1,139 @@
+version: '3.9'
+
+services:
+  # MongoDB
+  mongodb:
+    image: mongo:7.0-alpine
+    container_name: shopsense_mongodb
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: shopsense_dev
+      MONGO_INITDB_DATABASE: shopsense_ai
+    volumes:
+      - mongodb_data:/data/db
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/admin -u admin -p shopsense_dev
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - shopsense_net
+    restart: unless-stopped
+    command: --wiredTigerCacheSizeGB 2
+
+  # Redis
+  redis:
+    image: redis:7.2-alpine
+    container_name: shopsense_redis
+    ports:
+      - "6379:6379"
+    command: >
+      redis-server
+      --maxmemory 1gb
+      --maxmemory-policy allkeys-lru
+      --save 60 1000
+      --appendonly yes
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: redis-cli ping
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - shopsense_net
+    restart: unless-stopped
+
+  # Elasticsearch
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.11.0
+    container_name: shopsense_elasticsearch
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - ES_JAVA_OPTS=-Xms1g -Xmx2g
+      - indices.memory.index_buffer_size=30%
+    ports:
+      - "9200:9200"
+    volumes:
+      - elasticsearch_data:/usr/share/elasticsearch/data
+    healthcheck:
+      test: curl -s http://localhost:9200 >/dev/null || exit 1
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - shopsense_net
+    restart: unless-stopped
+
+  # Django API
+  django_api:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: shopsense_django
+    command: >
+      gunicorn
+      --workers 4
+      --worker-class sync
+      --bind 0.0.0.0:8000
+      --timeout 120
+      wsgi:application
+    ports:
+      - "8000:8000"
+    environment:
+      DEBUG: "False"
+      MONGO_URI: mongodb://admin:shopsense_dev@mongodb:27017/shopsense_ai?authSource=admin
+      REDIS_URL: redis://redis:6379/0
+      ELASTICSEARCH_HOST: elasticsearch:9200
+      LOG_LEVEL: INFO
+      ML_ARTIFACTS_DIR: /ml/artefacts
+    volumes:
+      - ./backend:/app
+      - ./ml:/ml
+    depends_on:
+      mongodb:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      elasticsearch:
+        condition: service_healthy
+    healthcheck:
+      test: curl -f http://localhost:8000/api/v1/health/ || exit 1
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    networks:
+      - shopsense_net
+    restart: unless-stopped
+
+  # Streamlit Dashboard
+  streamlit:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: shopsense_streamlit
+    command: streamlit run streamlit_dashboard.py --server.port 8501
+    ports:
+      - "8501:8501"
+    environment:
+      STREAMLIT_SERVER_HEADLESS: "true"
+      API_BASE_URL: http://django_api:8000/api/v1
+    volumes:
+      - ./frontend:/app
+    depends_on:
+      - django_api
+    networks:
+      - shopsense_net
+    restart: unless-stopped
+
+volumes:
+  mongodb_data:
+  redis_data:
+  elasticsearch_data:
+
+networks:
+  shopsense_net:
+    driver: bridge
