@@ -654,12 +654,4 @@ For issues or questions:
 
 ---
 
-## 📜 License
 
-This project is provided as-is for learning and production use.
-
----
-
-**Built by: Senior ML Engineer + Full-Stack Developer**  
-**Last Updated: July 2025**  
-**Status: Production Ready** ✅
