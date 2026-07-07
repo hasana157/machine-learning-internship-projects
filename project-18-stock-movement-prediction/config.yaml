@@ -1,0 +1,122 @@
+kaggle:
+  dataset_name: "camnugent/sandp500"
+  download_path: "data/raw/"
+  fallback_to_synthetic: true
+
+data:
+  default_ticker: "AAPL"
+  available_tickers: ["AAPL", "GOOGL", "MSFT", "AMZN", "TSLA", "NFLX", "NVDA", "META", "AMD", "INTC"]
+  date_range:
+    start: "2020-01-01"
+    end: "2024-01-01"
+  
+  synthetic_config:
+    n_days: 800
+    initial_price: 100
+    regimes:
+      bull:     { drift: 0.15, volatility: 0.18, duration_days: [60, 120] }
+      bear:     { drift: -0.10, volatility: 0.28, duration_days: [40, 90] }
+      sideways: { drift: 0.02, volatility: 0.22, duration_days: [50, 100] }
+      crash:    { drift: -0.25, volatility: 0.45, probability: 0.05 }
+
+features:
+  price_features: true
+  volume_features: true
+  momentum_features: true
+  volatility_features: true
+  temporal_features: true
+  
+  indicators:
+    sma_periods: [5, 10, 20, 50, 200]
+    ema_periods: [12, 26]
+    rsi_period: 14
+    macd_periods: { fast: 12, slow: 26, signal: 9 }
+    bollinger_period: 20
+    bollinger_std: 2.0
+    atr_period: 14
+    stochastic_period: 14
+  
+  lag_features:
+    returns: [1, 2, 3, 5]
+    volume: [1, 2]
+    rsi: [1]
+
+model:
+  random_forest:
+    n_estimators: 300
+    max_depth: 15
+    min_samples_split: 10
+    min_samples_leaf: 5
+    max_features: "sqrt"
+    class_weight: "balanced"
+    random_state: 42
+  
+  logistic_regression:
+    max_iter: 1000
+    C: 0.1
+    class_weight: "balanced"
+    random_state: 42
+  
+  prediction:
+    confidence_threshold: 0.55
+    probability_bins: [0.0, 0.2, 0.4, 0.6, 0.8, 1.0]
+
+training:
+  mode: "walk_forward"
+  
+  walk_forward:
+    initial_window: 252
+    retrain_frequency: 20
+    window_type: "expanding"
+  
+  train_test_split:
+    test_size: 0.20
+    shuffle: false
+  
+  validation:
+    cv_folds: 5
+
+backtesting:
+  initial_capital: 100000
+  position_size: 10000
+  confidence_threshold: 0.6
+  transaction_cost: 0.001
+  strategy_type: "long_only"
+  risk_management:
+    stop_loss: 0.05
+    take_profit: 0.10
+    max_position_size: 0.20
+  
+  benchmark: "buy_and_hold"
+
+evaluation:
+  metrics:
+    - accuracy
+    - precision
+    - recall
+    - f1
+    - roc_auc
+    - matthews_corrcoef
+  
+  plots:
+    - confusion_matrix
+    - roc_curve
+    - precision_recall_curve
+    - feature_importance
+    - equity_curve
+    - drawdown
+    - calibration_curve
+  
+  report_format: ["txt", "csv", "json"]
+
+paths:
+  data_raw: "data/raw/"
+  data_processed: "data/processed/"
+  models: "models/"
+  reports: "reports/"
+  figures: "reports/figures/"
+
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: "logs/marketsentinel.log"

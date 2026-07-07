@@ -1,0 +1,13 @@
+numpy
+pandas
+scikit-learn
+streamlit
+plotly
+matplotlib
+seaborn
+joblib
+pyyaml
+scipy
+kaggle
+requests
+python-dateutil
