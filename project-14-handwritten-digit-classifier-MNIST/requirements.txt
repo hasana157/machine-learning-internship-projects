@@ -1,0 +1,7 @@
+tensorflow>=2.15.0
+numpy>=1.24.0
+matplotlib>=3.7.0
+pillow>=10.0.0
+streamlit>=1.30.0
+jupyter>=1.0.0
+ipykernel>=6.25.0
